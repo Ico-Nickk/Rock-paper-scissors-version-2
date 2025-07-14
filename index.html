@@ -87,6 +87,15 @@
             console.log(playRound());
             console.log(playRound());
             console.log(playRound());
+
+            if (humanScore > computerScore) {
+                return `you win the game! score of ${humanScore} to ${computerScore}.`
+            } else if ( humanScore < computerScore) {
+                return `you lost the game! score of ${humanScore} to ${computerScore}.`
+            } else if (humanScore = computerScore) {
+                return `its a tie! score is ${humanScore} to ${computerScore}.`
+            }
+             
         }
 
 
