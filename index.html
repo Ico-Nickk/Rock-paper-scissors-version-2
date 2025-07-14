@@ -9,7 +9,7 @@
 
     <script>
 
-        function getComputerChoice(computerChoice) {
+        function getComputerChoice() {
 
             function getRandomIntInclusive(min, max) {
                 const minCeiled = Math.ceil(min);
@@ -20,16 +20,76 @@
             let randomNum = getRandomIntInclusive(1, 3);
 
             if (randomNum === 1) {
-                return computerChoice = "rock"
+                return "rock"
             } else if (randomNum === 2) {
-                return computerChoice = "paper"
+                return "paper"
             } else if (randomNum === 3) {
-                return computerChoice = "scissors"
+                return "scissors"
             }
 
         }
 
-        console.log(getComputerChoice());
+
+        function getHumanChoice () {
+            let result = prompt("rock, paper or scissors?");
+            return result;
+        }
+
+        function playRound () {
+
+            let humanScore = 0;
+            let computerScore = 0;
+
+            let humanChoice = getHumanChoice();
+            let computerChoice = getComputerChoice();
+
+            console.log(`your choose ${humanChoice}`);
+            console.log(`the computer choose ${computerChoice}`);
+
+            if ( humanChoice === "rock" && computerChoice === "rock") {
+                humanScore = humanScore;
+                computerScore = computerScore;
+                return `its a tie! score is ${humanScore} to ${computerScore}.`;
+
+            } else if (humanChoice === "paper" && computerChoice === "paper") {
+                humanScore = humanScore;
+                computerScore = computerScore;
+                return `its a tie! score is ${humanScore} to ${computerScore}.`;
+
+            } else if (humanChoice === "scissors" && computerChoice === "scissors") {
+                humanScore = humanScore;
+                computerScore = computerScore;
+                return `its a tie! score is ${humanScore} to ${computerScore}.`;
+
+            } else if (humanChoice === "rock" && computerChoice === "scissors") { 
+                humanScore = humanScore + 1;
+                return `you win! rock beats scissors. the score is ${humanScore} to ${computerScore}`;
+
+            } else if (humanChoice === "rock" && computerChoice === "scissors") {
+                computerScore = computerScore + 1;
+                return `better luck next time. scissors losses to rock. the score is ${humanScore} to ${computerScore}`;
+
+            } else if (humanChoice === "paper" && computerChoice === "rock") {
+                humanScore = humanScore + 1;
+                return `you win! paper beats rock. the score is ${humanScore} to ${computerScore}.`;
+
+            } else if (humanChoice === "rock" && computerChoice === "paper") {
+                computerScore = computerScore + 1;
+                return `better luck next time. rock losses to paper. the score is ${humanScore} to ${computerScore}.`;
+
+            } else if (humanChoice === "scissors" && computerChoice === "paper") {
+                humanScore = humanScore + 1;
+                return `you win! scissors beats paper. the score is ${humanScore} to ${computerScore}.`;
+
+            } else if (humanChoice === "paper" && computerChoice === "scissors") {
+                computerScore = computerScore + 1;
+                return `better luck next time. scissors losses to paper. the score is ${humanScore} to ${computerScore}.`;
+            }
+
+        }
+
+        console.log(playRound());
+
 
     </script>
 
