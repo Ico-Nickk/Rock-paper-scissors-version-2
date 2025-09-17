@@ -3,11 +3,61 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>RPS game</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,100..900&display=swap" rel="stylesheet">
+    <link rel="styleSheet" href="styles.css">
 </head>
 <body>
 
+    <div class="heading">
+       <h1>Rock paper scissors game!</h1> 
+    </div>
+    <div class="main">
+
+        <div class="game-actions">
+
+            <div class="player-side">
+                <p id="player-heading">You</p>
+                <p id="player-choice">I pick rock!</p>
+            </div>
+
+            <div class="versus">
+                <p id="versus-sign">VS</p>
+            </div>
+
+            <div class="opponent-side">
+                <p id="opponent-heading">opponent</p>
+                <p id="opponent-choice">I pick paper!</p>
+
+            </div>
+
+        </div>
+
+        <div class="game-buttons">
+            <button id="rock">Rock</button>
+            <button id="paper">Paper</button>
+            <button id="scissors">Scissors</button>
+        </div>
+
+        <div class="win-status">
+            <p>Rounds played : 2</p>
+        </div>
+    </div>
+
     <script>
+
+        const rockBtn = document.querySelector("#rock");
+        const paperBtn = document.querySelector("#paper");
+        const scissorBtn = document.querySelector("#scissors");
+
+        let humanChoice = "";
+        let computerChoice = "";
+        let roundsPlayed = 0;
+        let humanScore = 0;
+        let computerScore = 0;
 
         function getComputerChoice() {
 
@@ -15,7 +65,7 @@
                 const minCeiled = Math.ceil(min);
                 const maxFloored = Math.floor(max);
                 return Math.floor(Math.random() * (maxFloored - minCeiled + 1) + minCeiled);
-            } 
+            }; 
 
             let randomNum = getRandomIntInclusive(1, 3);
 
@@ -25,78 +75,83 @@
                 return "paper"
             } else if (randomNum === 3) {
                 return "scissors"
-            }
+            };
 
-        }
+        };
 
-        function getHumanChoice () {
-            let result = prompt("rock, paper or scissors?");
-            return result;
-        }
+        function playRound(Choice1, computerChoice) {
+            humanChoice =  Choice1;
+            computerChoice = getComputerChoice();
 
-        function playGame() {
+            document.getElementById("player-choice").textContent = `I pick ${humanChoice}!`;
+            document.getElementById("opponent-choice").textContent = `I pick ${computerChoice}!`;
 
-            let humanScore = 0;
-            let computerScore = 0;
+            roundsPlayed++;
 
-            function playRound () {
+            console.log(roundsPlayed);
 
-                let humanChoice = getHumanChoice().toLowerCase();
-                let computerChoice = getComputerChoice();
+            if ( humanChoice === computerChoice ) {
+                document.getElementById("roundsPlayed").textContent = `rounds played: ${roundsPlayed}`;
+                document.getElementById("winner").textContent = `its a tie! score is ${humanScore} to ${computerScore}. make your choice for the next round`;
 
-                console.log(`you choose ${humanChoice}`);
-                console.log(`the computer choose ${computerChoice}`);
+            } else if (humanChoice === "rock" && computerChoice === "scissors") { 
+                humanScore = humanScore + 1;
+                document.getElementById("roundsPlayed").textContent = `rounds played: ${roundsPlayed}`;
+                document.getElementById("winner").textContent = `you win! rock beats scissors. the score is ${humanScore} to ${computerScore}. make your choice for the next round`;
 
-                if ( humanChoice === "rock" && computerChoice === "rock") {
-                    return `its a tie! score is ${humanScore} to ${computerScore}.`;
 
-                } else if (humanChoice === "paper" && computerChoice === "paper") {
-                    return `its a tie! score is ${humanScore} to ${computerScore}.`;
+            } else if (humanChoice === "scissors" && computerChoice === "rock") {
+                computerScore = computerScore + 1;
+                document.getElementById("roundsPlayed").textContent = `rounds played: ${roundsPlayed}`;
+                document.getElementById("winner").textContent = `better luck next time. scissors losses to rock. the score is ${humanScore} to ${computerScore}. make your choice for the next round`;
 
-                } else if (humanChoice === "scissors" && computerChoice === "scissors") {
-                    return `its a tie! score is ${humanScore} to ${computerScore}.`;
 
-                } else if (humanChoice === "rock" && computerChoice === "scissors") { 
-                    humanScore = humanScore + 1;
-                    return `you win! rock beats scissors. the score is ${humanScore} to ${computerScore}`;
+            } else if (humanChoice === "paper" && computerChoice === "rock") {
+                humanScore = humanScore + 1;
+                document.getElementById("roundsPlayed").textContent = `rounds played: ${roundsPlayed}`;
+                document.getElementById("winner").textContent = `you win! paper beats rock. the score is ${humanScore} to ${computerScore}. make your choice for the next round`;
 
-                } else if (humanChoice === "rock" && computerChoice === "scissors") {
-                    computerScore = computerScore + 1;
-                    return `better luck next time. scissors losses to rock. the score is ${humanScore} to ${computerScore}`;
 
-                } else if (humanChoice === "paper" && computerChoice === "rock") {
-                    humanScore = humanScore + 1;
-                    return `you win! paper beats rock. the score is ${humanScore} to ${computerScore}.`;
+            } else if (humanChoice === "rock" && computerChoice === "paper") {
+                computerScore = computerScore + 1;
+                document.getElementById("roundsPlayed").textContent = `rounds played: ${roundsPlayed}`;
+                document.getElementById("winner").textContent = `better luck next time. rock losses to paper. the score is ${humanScore} to ${computerScore}. make your choice for the next round`;
 
-                } else if (humanChoice === "rock" && computerChoice === "paper") {
-                    computerScore = computerScore + 1;
-                    return `better luck next time. rock losses to paper. the score is ${humanScore} to ${computerScore}.`;
 
-                } else if (humanChoice === "scissors" && computerChoice === "paper") {
-                    humanScore = humanScore + 1;
-                    return `you win! scissors beats paper. the score is ${humanScore} to ${computerScore}.`;
+            } else if (humanChoice === "scissors" && computerChoice === "paper") {
+                humanScore = humanScore + 1;
+                document.getElementById("roundsPlayed").textContent = `rounds played: ${roundsPlayed}`;
+                document.getElementById("winner").textContent = `you win! scissors beats paper. the score is ${humanScore} to ${computerScore}. make your choice for the next round`;
 
-                } else if (humanChoice === "paper" && computerChoice === "scissors") {
-                    computerScore = computerScore + 1;
-                    return `better luck next time. scissors losses to paper. the score is ${humanScore} to ${computerScore}.`;
-                }
-            }
 
-            console.log(playRound());
-            console.log(playRound());
-            console.log(playRound());
-            console.log(playRound());
-            console.log(playRound());
+            } else if (humanChoice === "paper" && computerChoice === "scissors") {
+                computerScore = computerScore + 1;
+                document.getElementById("roundsPlayed").textContent = `rounds played: ${roundsPlayed}`;
+                document.getElementById("winner").textContent = `better luck next time. scissors losses to paper. the score is ${humanScore} to ${computerScore}. make your choice for the next round`;
 
-            if (humanScore > computerScore) {
-                return `you win the game! score of ${humanScore} to ${computerScore}.`
-            } else if ( humanScore < computerScore) {
-                return `you lost the game! score of ${humanScore} to ${computerScore}.`
-            } else if (humanScore = computerScore) {
-                return `its a tie! score is ${humanScore} to ${computerScore}.`
-            }
+            };
 
-        }
+            if (roundsPlayed === 5) {
+               if (humanScore > computerScore) {
+                    console.log(`you win the game! score of ${humanScore} to ${computerScore}.`);
+                    document.getElementById("winner").textContent = `you win the game! score of ${humanScore} to ${computerScore}. press a button to start a new game`;
+                } else if ( humanScore < computerScore) {
+                    console.log(`you lost the game! score of ${humanScore} to ${computerScore}.`);
+                    document.getElementById("winner").textContent = `you lost the game! score of ${humanScore} to ${computerScore}. press a button to start a new game`;
+                } else if (humanScore = computerScore) {
+                    console.log(`its a tie! score is ${humanScore} to ${computerScore}.`);
+                    document.getElementById("winner").textContent = `The game is a tie! score is ${humanScore} to ${computerScore}. press a button to start a new game`;
+                }; 
+                roundsPlayed = 0;
+                humanScore = 0;
+                computerScore = 0;
+            };
+
+        };
+
+        rockBtn.onclick = () => playRound("rock");
+        paperBtn.onclick = () => playRound("paper");
+        scissorBtn.onclick = () => playRound("scissors");
 
 
     </script>
