@@ -43,7 +43,7 @@
         </div>
 
         <div class="win-status">
-            <p>Rounds played : 2</p>
+            <p id="winMessage">Rounds played : 2</p>
         </div>
     </div>
 
@@ -91,56 +91,49 @@
             console.log(roundsPlayed);
 
             if ( humanChoice === computerChoice ) {
-                document.getElementById("roundsPlayed").textContent = `rounds played: ${roundsPlayed}`;
-                document.getElementById("winner").textContent = `its a tie! score is ${humanScore} to ${computerScore}. make your choice for the next round`;
+                document.getElementById("winMessage").textContent = `its a tie! \n score is ${humanScore} to ${computerScore}. \n rounds played: ${roundsPlayed}`;
 
             } else if (humanChoice === "rock" && computerChoice === "scissors") { 
                 humanScore = humanScore + 1;
-                document.getElementById("roundsPlayed").textContent = `rounds played: ${roundsPlayed}`;
-                document.getElementById("winner").textContent = `you win! rock beats scissors. the score is ${humanScore} to ${computerScore}. make your choice for the next round`;
+                document.getElementById("winMessage").textContent = `you win! rock beats scissors. \n the score is ${humanScore} to ${computerScore}. \n rounds played: ${roundsPlayed}`;
 
 
             } else if (humanChoice === "scissors" && computerChoice === "rock") {
                 computerScore = computerScore + 1;
-                document.getElementById("roundsPlayed").textContent = `rounds played: ${roundsPlayed}`;
-                document.getElementById("winner").textContent = `better luck next time. scissors losses to rock. the score is ${humanScore} to ${computerScore}. make your choice for the next round`;
+                document.getElementById("winMessage").textContent = `better luck next time. scissors losses to rock. \n the score is ${humanScore} to ${computerScore}. \n rounds played: ${roundsPlayed}`;
 
 
             } else if (humanChoice === "paper" && computerChoice === "rock") {
                 humanScore = humanScore + 1;
-                document.getElementById("roundsPlayed").textContent = `rounds played: ${roundsPlayed}`;
-                document.getElementById("winner").textContent = `you win! paper beats rock. the score is ${humanScore} to ${computerScore}. make your choice for the next round`;
+                document.getElementById("winMessage").textContent = `you win! paper beats rock. \n the score is ${humanScore} to ${computerScore}. \n rounds played: ${roundsPlayed}`;
 
 
             } else if (humanChoice === "rock" && computerChoice === "paper") {
                 computerScore = computerScore + 1;
-                document.getElementById("roundsPlayed").textContent = `rounds played: ${roundsPlayed}`;
-                document.getElementById("winner").textContent = `better luck next time. rock losses to paper. the score is ${humanScore} to ${computerScore}. make your choice for the next round`;
+                document.getElementById("winMessage").textContent = `better luck next time. rock losses to paper. \n the score is ${humanScore} to ${computerScore}. \n rounds played: ${roundsPlayed}`;
 
 
             } else if (humanChoice === "scissors" && computerChoice === "paper") {
                 humanScore = humanScore + 1;
-                document.getElementById("roundsPlayed").textContent = `rounds played: ${roundsPlayed}`;
-                document.getElementById("winner").textContent = `you win! scissors beats paper. the score is ${humanScore} to ${computerScore}. make your choice for the next round`;
+                document.getElementById("winMessage").textContent = `you win! scissors beats paper. \n the score is ${humanScore} to ${computerScore}. \n rounds played: ${roundsPlayed}`;
 
 
             } else if (humanChoice === "paper" && computerChoice === "scissors") {
                 computerScore = computerScore + 1;
-                document.getElementById("roundsPlayed").textContent = `rounds played: ${roundsPlayed}`;
-                document.getElementById("winner").textContent = `better luck next time. scissors losses to paper. the score is ${humanScore} to ${computerScore}. make your choice for the next round`;
+                document.getElementById("winMessage").textContent = `better luck next time. scissors losses to paper. \n the score is ${humanScore} to ${computerScore}. \n rounds played: ${roundsPlayed}`;
 
             };
 
             if (roundsPlayed === 5) {
                if (humanScore > computerScore) {
                     console.log(`you win the game! score of ${humanScore} to ${computerScore}.`);
-                    document.getElementById("winner").textContent = `you win the game! score of ${humanScore} to ${computerScore}. press a button to start a new game`;
+                    document.getElementById("winMessage").textContent = `you win the game! score of ${humanScore} to ${computerScore}. \n press a button to start a new game`;
                 } else if ( humanScore < computerScore) {
                     console.log(`you lost the game! score of ${humanScore} to ${computerScore}.`);
-                    document.getElementById("winner").textContent = `you lost the game! score of ${humanScore} to ${computerScore}. press a button to start a new game`;
+                    document.getElementById("winMessage").textContent = `you lost the game! score of ${humanScore} to ${computerScore}. \n press a button to start a new game`;
                 } else if (humanScore = computerScore) {
                     console.log(`its a tie! score is ${humanScore} to ${computerScore}.`);
-                    document.getElementById("winner").textContent = `The game is a tie! score is ${humanScore} to ${computerScore}. press a button to start a new game`;
+                    document.getElementById("winMessage").textContent = `The game is a tie! score is ${humanScore} to ${computerScore}. \n press a button to start a new game`;
                 }; 
                 roundsPlayed = 0;
                 humanScore = 0;
